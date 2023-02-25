@@ -23,9 +23,9 @@ def display_board(board):
     print("E", "|", board[4][0], "|", board[4][1], "|", board[4][2], "|", board[0][3], "|", board[0][4], "|")
     print("  ","---+---+---+---+---")
 
-empty_board = get_empty_board()
-print(empty_board)
+#empty_board = get_empty_board()
+#print(empty_board)
 
 
 
-display_board(empty_board)
+#display_board(empty_board)
