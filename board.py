@@ -13,3 +13,4 @@ def display_board(board, width, height):
    # should return a graphic representation
    # of a dictionary board, using height/width
    # create and print board
+   pass
