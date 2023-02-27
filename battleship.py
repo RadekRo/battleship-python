@@ -1,4 +1,4 @@
-# from board import <nazwy funkcji>
+from board import get_empty_board, display_board
 # from coordinates import <nazwy funkcji>
 from menu import menu
 
@@ -10,5 +10,4 @@ def main():
     game_mode = menu()
     while game_mode == "active":
         break
-
 main()
