@@ -3,7 +3,8 @@ from board import get_empty_board, display_board
 from menu import menu
 
 HUMAN_VS_HUMAN = 1
-HUMAN_VS_RANDOM_AI = 2
+BOARD_WIDTH = 5
+BOARD_HEIGHT = 5
 
 def main():
     # gameplay function
