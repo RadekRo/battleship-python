@@ -49,7 +49,7 @@ BATTLESHIP. SADR Studio Developers 2023.
       break
     
     if user_entry_validation(user_entry):
-      return user_entry
+      return "active"
     else:
       error_message = True if user_entry != 2 else False
 
