@@ -1,22 +1,53 @@
-# coordinates = {}
-# create a dictionary with all the potential alphabet letters as keys and attach index numbers as its values.
+import random
 
+# create a dictionary with letters of the alphabet as keys and their corresponding indices as values
+alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+alphabet_dict = {}
+for i in range(len(alphabet)):
+    alphabet_dict[alphabet[i]] = i+1
+
+# function to get human player's ship coordinates
 def get_human_ship_coordinates(board):
-    # should return a list of human ship coordinates to place on board
-    # like ["A1", "A2"] for a two sails ship or ["A1"] for a one sail ship.
-    # All the values returned must be strings! 
-    # If coordinate is out of the board's range return False
-    pass
+    while True:
+        coordinates = input("Enter the coordinates of your ship: ")
+        if coordinates[0].upper() not in alphabet_dict or not coordinates[1:].isdigit():
+            print("Invalid coordinates! Try again.")
+            continue
+        row = alphabet_dict[coordinates[0].upper()]
+        col = int(coordinates[1:])
+        if row < 1 or row > len(board) or col < 1 or col > len(board[0]):
+            print("Coordinates out of range! Try again.")
+            continue
+        if board[row-1][col-1] != "~":
+            print("There's already a ship there! Try again.")
+            continue
+        return [coordinates]
 
+# function to get random ship coordinates for AI player
 def get_ai_random_ship_coordinates(board):
-    # similiar to above - shuffle random coordinate - leave it for later on!
-    pass
+    # TODO: implement
 
+# function to get human player's shot coordinates
 def get_human_shot_coordinates(board):
-    # should return a string smiliar to: "A1" or "A2" or "A3"
-    # if shot is out of the board's range return False
-    pass
+    while True:
+        coordinates = input("Enter the coordinates of your shot: ")
+        if coordinates[0].upper() not in alphabet_dict or not coordinates[1:].isdigit():
+            print("Invalid coordinates! Try again.")
+            continue
+        row = alphabet_dict[coordinates[0].upper()]
+        col = int(coordinates[1:])
+        if row < 1 or row > len(board) or col < 1 or col > len(board[0]):
+            print("Coordinates out of range! Try again.")
+            continue
+        if board[row-1][col-1] != "~":
+            print("You've already shot there! Try again.")
+            continue
+        return coordinates
 
+# function to get random shot coordinates for AI player
 def get_ai_random_shot_coordinates(board):
-    # similiar to above - shuffle random coordinate - leave it for later on!
-    pass
+    while True:
+        row = random.randint(1, len(board))
+        col = random.randint(1, len(board[0]))
+        if board[row-1][col-1] == "~":
+            return alphabet[row-1] + str(col)
