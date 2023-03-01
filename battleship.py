@@ -6,9 +6,15 @@ HUMAN_VS_HUMAN = 1
 BOARD_WIDTH = 5
 BOARD_HEIGHT = 5
 
+def positioning_phase():
+    board = get_empty_board(BOARD_WIDTH, BOARD_HEIGHT)
+    print(board)
+
 def main():
     # gameplay function
     game_mode = menu()
-    while game_mode == "active":
-        break
+    player_one = positioning_phase()
+    player_two = positioning_phase()
+    #while game_mode == "active":
+    # pass   
 main()
