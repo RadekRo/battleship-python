@@ -1,4 +1,5 @@
 from common import clear, get_message
+from graphics import get_menu_header
 
 def get_user_entry():
   choice = int(input("CHOOSE AN OPTION \u2022 "))
@@ -14,19 +15,8 @@ def menu():
   show_manual = False
 
   while user_entry != 1:
+    get_menu_header()
     print("""
-             |    |    |                 
-             )_)  )_)  )_)              
-            )___))___))___)\            
-           )____)____)_____)\\
-         _____|____|____|____\\\__
----------\                   /----------
-  ^^^^^ ^^^^^^^^^^^^^^^^^^^^^
-    ^^^^      ^^^^     ^^^    ^^
-         ^^^^      ^^^
-========================================
-BATTLESHIP. SADR Studio Developers 2023.
-========================================
 1. NEW GAME
 2. MANUAL
 3. QUIT
