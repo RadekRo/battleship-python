@@ -3,8 +3,8 @@ from board import get_empty_board, display_board
 from menu import menu
 
 HUMAN_VS_HUMAN = 1
-BOARD_WIDTH = 10
-BOARD_HEIGHT = 10
+BOARD_WIDTH = 5
+BOARD_HEIGHT = 5
 
 def positioning_phase():
     board = get_empty_board(BOARD_WIDTH, BOARD_HEIGHT)
