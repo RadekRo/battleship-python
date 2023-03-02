@@ -26,6 +26,7 @@ def get_human_ship_coordinates(board):
 # function to get random ship coordinates for AI player
 def get_ai_random_ship_coordinates(board):
     # TODO: implement
+    pass
 
 # function to get human player's shot coordinates
 def get_human_shot_coordinates(board):
