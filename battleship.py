@@ -18,7 +18,7 @@ def positioning_phase(player):
     board = get_empty_board(BOARD_SIZE)
     ship_quantity = get_ship_base(BOARD_SIZE)
     clear()
-    input("Press any key to deploying phase of PLAYER ONE!")
+    input(f"Press any key to deploying phase of PLAYER {player}!")
     while len(ship_quantity) > 0:
         clear()
         print(f"SHIP POSITIONING. PLAYER {player}.\n")
@@ -27,7 +27,8 @@ def positioning_phase(player):
         print(f"Current ship: {current_ship} sail(s)")
         ship = input(f"Player {player} enter coordinates of your ship \u2022 ")
         del ship_quantity[0]
-    input(f"Press any key to proceed to PLAYER {player}...")
+    clear()
+    input(f"Press any key to proceed to PLAYER {player + 1}...")
 
 def main():
     # gameplay function
