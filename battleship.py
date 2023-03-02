@@ -28,7 +28,6 @@ def positioning_phase(player):
         ship = input(f"Player {player} enter coordinates of your ship \u2022 ")
         del ship_quantity[0]
     clear()
-    input(f"Press any key to proceed to PLAYER {player + 1}...")
 
 def main():
     # gameplay function
