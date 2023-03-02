@@ -42,4 +42,4 @@ def display_board(board, size):
     board = board_header + board_rows
     print(board)
 
-display_board(player_one, 10)
+#display_board(player_one, 10)
