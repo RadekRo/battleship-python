@@ -27,7 +27,7 @@ def positioning_phase(player):
         get_new_line()
         print(f"SHIP POSITIONING. PLAYER {player}.\n")
         display_board(board, BOARD_SIZE)
-        current_ship = ship_quantity[0]\
+        current_ship = ship_quantity[0]
         print(f"Remaining ships: {len(ship_quantity)}.")
         print(f"Current ship: {current_ship} sail(s).")
         ship = input(f"Player {player} enter coordinates of your ship \u2022 ")
