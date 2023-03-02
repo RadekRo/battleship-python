@@ -1,7 +1,8 @@
-from board import get_empty_board, display_board
+from board import get_empty_board, display_board, get_new_line
 # from coordinates import <nazwy funkcji>
 from menu import menu
 from common import clear
+from graphics import get_menu_header
 
 HUMAN_VS_HUMAN = 1
 BOARD_SIZE = 5
@@ -18,19 +19,24 @@ def positioning_phase(player):
     board = get_empty_board(BOARD_SIZE)
     ship_quantity = get_ship_base(BOARD_SIZE)
     clear()
+    get_menu_header()
     input(f"Press any key to deploying phase of PLAYER {player}!")
     while len(ship_quantity) > 0:
         clear()
+        get_menu_header()
+        get_new_line()
         print(f"SHIP POSITIONING. PLAYER {player}.\n")
         display_board(board, BOARD_SIZE)
-        current_ship = ship_quantity[0]
-        print(f"Current ship: {current_ship} sail(s)")
+        current_ship = ship_quantity[0]\
+        print(f"Remaining ships: {len(ship_quantity)}.")
+        print(f"Current ship: {current_ship} sail(s).")
         ship = input(f"Player {player} enter coordinates of your ship \u2022 ")
         del ship_quantity[0]
     clear()
 
 def main():
     # gameplay function
+    clear()
     game_mode = menu()
     if game_mode == "active":
         player_one = positioning_phase(1)
