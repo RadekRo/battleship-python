@@ -1,4 +1,4 @@
-from board import get_empty_board, display_board, get_new_line
+from board import get_empty_board, display_board
 # from coordinates import <nazwy funkcji>
 from menu import menu
 from common import clear
@@ -20,11 +20,10 @@ def positioning_phase(player):
     ship_quantity = get_ship_base(BOARD_SIZE)
     clear()
     get_menu_header()
-    input(f"Press any key to deploying phase of PLAYER {player}!")
+    input(f"Press any key to deploying phase of PLAYER {player}...")
     while len(ship_quantity) > 0:
         clear()
         get_menu_header()
-        get_new_line()
         print(f"SHIP POSITIONING. PLAYER {player}.\n")
         display_board(board, BOARD_SIZE)
         current_ship = ship_quantity[0]
