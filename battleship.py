@@ -15,12 +15,15 @@ def get_ship_base(size):
     ships_base = three_sails + two_sails + one_sail
     return ships_base
 
+def pause_game(player):
+    input(f"Press [ENTER] for deploying phase of PLAYER {player}...")
+
 def positioning_phase(player):
     board = get_empty_board(BOARD_SIZE)
     ship_quantity = get_ship_base(BOARD_SIZE)
     clear()
     get_menu_header()
-    input(f"Press [ENTER] for deploying phase of PLAYER {player}...")
+    pause_game()
     while len(ship_quantity) > 0:
         clear()
         get_menu_header()
