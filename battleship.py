@@ -1,4 +1,4 @@
-from board import get_empty_board, display_board, place_ship_on_board
+from board import get_empty_board, display_board, place_ship_on_board, leave_only_ships_on_board
 from coordinates import get_human_ship_coordinates
 from menu import menu
 from common import clear
@@ -37,7 +37,8 @@ def positioning_phase(player):
         if len(coords) > 0:
             place_ship_on_board(board, coords, BOARD_SIZE)
             del ship_quantity[0]
-    clear()
+    board = leave_only_ships_on_board(board)
+    return board
 
 def main():
     # gameplay function
@@ -46,6 +47,10 @@ def main():
     if game_mode == "active":
         player_one = positioning_phase(1)
         player_two = positioning_phase(2)
+        print(f"""PLAYER ONE:
+{display_board(player_one, BOARD_SIZE)}""")
+        print(f"""PLAYER TWO:
+{display_board(player_two, BOARD_SIZE)}""")
         #while game_mode == "active":
         # pass   
 main()

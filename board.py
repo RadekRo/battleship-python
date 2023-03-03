@@ -11,7 +11,6 @@ def check_sail_presence(board, coordinate):
   except:
     return False
     
-
 def check_surrounding(board, coordinate, board_size):
 
   alphabet = string.ascii_uppercase
@@ -48,6 +47,12 @@ def place_ship_on_board(board, coordinates, size):
     board = block_surrounding_fields(board, blocked_fields)
   return board
 
+def leave_only_ships_on_board(board):
+    for key, value in board.items():
+        if value == ".":
+            board[key] = "~"
+    return board
+
 def get_empty_board(size):
     empty_board = {}
     for row in range(0, size):
@@ -73,7 +78,8 @@ def get_board_rows(board, size):
         current_row = string.ascii_uppercase[row]
         board_rows += f" {current_row} "
         for col in range(1, size + 1):
-            board_rows += f" {board[current_row + str(col)]} "
+            value = board[current_row + str(col)] if board[current_row + str(col)] != "." else "~"
+            board_rows += f" {value} "
         board_rows += get_new_line()
     return board_rows
 

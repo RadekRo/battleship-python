@@ -16,9 +16,12 @@ def get_human_ship_coordinates(board, ship, board_size):
 
     while len(human_ship_coordinates) < 1:
         coordinates = input("Enter your ship starting position (A1, B2..) \u2022 ").upper()
-        direction = input("""Enter ship direction 
+        if ship > 1:
+            direction = input("""Enter ship direction 
 \033[93mH\033[0m for horizontal or \033[93mV\033[0m for vertical \u2022 """).upper()  
-
+        else:
+            direction = "H"
+            
         if coordinates[0] not in alphabet_dict or not coordinates[1:].isdigit() or direction not in ship_directions:
             print("Invalid coordinates! Try again.")
             continue
@@ -38,14 +41,14 @@ def get_human_ship_coordinates(board, ship, board_size):
         
         for sail in human_ship_coordinates:
             if board[sail] == "X":
-                print("Invalid coordinates! There's already a ship there! Try again.")
+                print("Invalid coordinates! There's already a ship there! Try again!")
                 human_ship_coordinates = list()
-                time.sleep(1)
+                time.sleep(1.5)
                 break
             elif board[sail] == ".":
-                print("Invalid coordinates! To close to other ship! Try again")
+                print("Invalid coordinates! To close to other ship! Try again!")
                 human_ship_coordinates = list()
-                time.sleep(1)
+                time.sleep(1.5)
                 break
         return human_ship_coordinates
 
