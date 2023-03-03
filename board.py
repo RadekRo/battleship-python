@@ -4,6 +4,13 @@ import string
 #'~', 'F8': '~', 'F9': 'X', 'F10': 'X', 'G1': '~', 'G2': '~', 'G3': '~', 'G4': '~', 'G5': '~', 'G6': '~', 'G7': '~', 'G8': '~', 'G9': '~', 'G10': '~', 'H1': '~', 'H2': '~', 'H3': '~', 'H4': '~', 'H5': '~', 'H6': '~', 'H7': '~', 'H8': '~', 'H9': '~', 'H10': '~', 'I1': '~', 'I2': '~', 'I3': '~', 'I4': '~', 'I5': '~', 'I6': '~', 'I7': '~', 'I8': '~', 'I9': '~', 'I10': '~', 'J1': '~', 'J2': '~', 'J3': '~', 'J4': '~', 'J5': '~', 'J6': '~', 'J7': '~', 'J8': '~', 'J9': '~', 
 #'J10': '~'}
 
+def place_ship_on_board(board, coordinates):
+  for coord in coordinates:
+    board[coord] = "X"
+    blocked_fields = check_surrounding(board, coord, BOARD_WIDTH, BOARD_HEIGHT)
+    board = block_surrounding_fields(board, blocked_fields)
+  return board
+
 def get_empty_board(size):
     empty_board = {}
     for row in range(0, size):
