@@ -16,8 +16,7 @@ def menu():
 
   while user_entry != 1:
     get_menu_header()
-    print("""
-1. NEW GAME
+    print("""1. NEW GAME
 2. MANUAL
 3. QUIT
          """)
