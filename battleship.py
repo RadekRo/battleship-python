@@ -23,7 +23,7 @@ def positioning_phase(player):
     ship_quantity = get_ship_base(BOARD_SIZE)
     clear()
     get_menu_header()
-    pause_game()
+    pause_game(player)
     while len(ship_quantity) > 0:
         clear()
         get_menu_header()
@@ -32,8 +32,8 @@ def positioning_phase(player):
         current_ship = ship_quantity[0]
         print(f"Remaining ships: {len(ship_quantity)}.")
         print(f"Current ship: {current_ship} sail(s).")
-        #ship = input(f"Player {player} enter coordinates of your ship \u2022 ")
-        get_human_ship_coordinates(board)
+        #ship = input(f"Player {player} enter coordinates of your ship  ")
+        get_human_ship_coordinates(board, current_ship, BOARD_SIZE)
         del ship_quantity[0]
     clear()
 
