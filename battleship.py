@@ -1,4 +1,4 @@
-from board import get_empty_board, display_board
+from board import get_empty_board, display_board, place_ship_on_board
 from coordinates import get_human_ship_coordinates
 from menu import menu
 from common import clear
@@ -33,8 +33,10 @@ def positioning_phase(player):
         print(f"Remaining ships: {len(ship_quantity)}.")
         print(f"Current ship: {current_ship} sail(s).")
         #ship = input(f"Player {player} enter coordinates of your ship  ")
-        get_human_ship_coordinates(board, current_ship, BOARD_SIZE)
-        del ship_quantity[0]
+        coords = get_human_ship_coordinates(board, current_ship, BOARD_SIZE)
+        if len(coords) > 0:
+            place_ship_on_board(board, coords, BOARD_SIZE)
+            del ship_quantity[0]
     clear()
 
 def main():

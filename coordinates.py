@@ -1,4 +1,4 @@
-import random, string
+import random, string, time
 
 # create a dictionary with letters of the alphabet as keys and their corresponding indices as values
 alphabet = string.ascii_uppercase
@@ -22,7 +22,10 @@ def get_human_ship_coordinates(board, ship, board_size):
         if coordinates[0] not in alphabet_dict or not coordinates[1:].isdigit() or direction not in ship_directions:
             print("Invalid coordinates! Try again.")
             continue
-        if chr(ord(coordinates[0]) + 1) not in letters_range or int(coordinates[1:]) + check_length_range > board_size:
+        if chr(ord(coordinates[0]) + 1) not in letters_range and direction == "V": 
+            print("Coordinates out of range! Try again.")
+            continue
+        elif int(coordinates[1:]) + check_length_range > board_size:
             print("Coordinates out of range! Try again.")
             continue
 
@@ -36,12 +39,14 @@ def get_human_ship_coordinates(board, ship, board_size):
         for sail in human_ship_coordinates:
             if board[sail] == "X":
                 print("Invalid coordinates! There's already a ship there! Try again.")
-                continue
+                human_ship_coordinates = list()
+                time.sleep(1)
+                break
             elif board[sail] == ".":
                 print("Invalid coordinates! To close to other ship! Try again")
-                continue
-        print(human_ship_coordinates)
-        a = input("CO")
+                human_ship_coordinates = list()
+                time.sleep(1)
+                break
         return human_ship_coordinates
 
 # function to get random ship coordinates for AI player

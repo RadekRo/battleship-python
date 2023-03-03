@@ -4,7 +4,15 @@ import string
 #'~', 'F8': '~', 'F9': 'X', 'F10': 'X', 'G1': '~', 'G2': '~', 'G3': '~', 'G4': '~', 'G5': '~', 'G6': '~', 'G7': '~', 'G8': '~', 'G9': '~', 'G10': '~', 'H1': '~', 'H2': '~', 'H3': '~', 'H4': '~', 'H5': '~', 'H6': '~', 'H7': '~', 'H8': '~', 'H9': '~', 'H10': '~', 'I1': '~', 'I2': '~', 'I3': '~', 'I4': '~', 'I5': '~', 'I6': '~', 'I7': '~', 'I8': '~', 'I9': '~', 'I10': '~', 'J1': '~', 'J2': '~', 'J3': '~', 'J4': '~', 'J5': '~', 'J6': '~', 'J7': '~', 'J8': '~', 'J9': '~', 
 #'J10': '~'}
 
-def check_surrounding(board, coordinate, width, height):
+def check_sail_presence(board, coordinate):
+  try:
+    if coordinate and board[coordinate] != "X":
+        return coordinate
+  except:
+    return False
+    
+
+def check_surrounding(board, coordinate, board_size):
 
   alphabet = string.ascii_uppercase
   left, right, up, down = [False] * 4
@@ -13,7 +21,7 @@ def check_surrounding(board, coordinate, width, height):
     left = coordinate[0] + str(int(coordinate[1:]) - 1) 
     left = check_sail_presence(board, left)
     
-  if int(coordinate[1:]) < width:
+  if int(coordinate[1:]) < board_size:
     right = coordinate[0] + str(int(coordinate[1:]) + 1) 
     right = check_sail_presence(board, right)
 
@@ -21,7 +29,7 @@ def check_surrounding(board, coordinate, width, height):
     up = alphabet[alphabet.index(coordinate[0]) - 1] + coordinate[1:]  
     up = check_sail_presence(board, up)
     
-  if alphabet.index(coordinate[0]) < height:
+  if alphabet.index(coordinate[0]) < board_size:
     down = alphabet[alphabet.index(coordinate[0]) + 1] + coordinate[1:]
     down = check_sail_presence(board, down)
 
@@ -33,10 +41,10 @@ def block_surrounding_fields(board, coordinates):
         board[field] = "."
   return board
 
-def place_ship_on_board(board, coordinates):
+def place_ship_on_board(board, coordinates, size):
   for coord in coordinates:
     board[coord] = "X"
-    blocked_fields = check_surrounding(board, coord, BOARD_WIDTH, BOARD_HEIGHT)
+    blocked_fields = check_surrounding(board, coord, size)
     board = block_surrounding_fields(board, blocked_fields)
   return board
 
