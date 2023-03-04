@@ -45,13 +45,13 @@ def positioning_phase(player):
 
 def shooting_phase(first_board, second_board, size):
     
-    winner = ""
+    winner = False
     turn = 1
     clear()
     get_menu_header()
     pause_game(..., "shoot")
     
-    while winner == "":
+    while winner == False:
         clear()
         get_menu_header()
         display_double_board(second_board, first_board, size)
@@ -83,7 +83,9 @@ def shooting_phase(first_board, second_board, size):
                 if sunk == True:
                     print("SHIP SUNK, big splash!") 
                     sunk_ship(current_board, shot, BOARD_SIZE)
+                    winner = True if "X" not in current_board.values() else False
                 time.sleep(1.6)
+    return 2 if turn % 2 != 0 else 1   
 
 def main():
     clear()
@@ -92,6 +94,10 @@ def main():
         player_one = positioning_phase(1)
         player_two = positioning_phase(2)
         clear()
-        shooting_phase(player_one, player_two, BOARD_SIZE)
+        winner = shooting_phase(player_one, player_two, BOARD_SIZE)
+        if winner == 1:
+            print("PLAYER ONE WINS! GAME OVER!")
+        elif winner == 2:
+            print("PLAYER TWO WINS! GAME OVER!") 
            
 main()

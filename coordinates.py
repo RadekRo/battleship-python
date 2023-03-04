@@ -24,13 +24,6 @@ def sunk_ship(board, coordinate, board_size):
                 hit = 1
         ship_sunk = True if hit == 0 else False
 
-
-                
-                    
-        
-
-
-
 def check_if_ship_is_sunk(board, coordinate, board_size):
     letters_range = string.ascii_uppercase[:board_size]
     sail_check_left = coordinate[0] + str(int(coordinate[1:]) - 1) if int(coordinate[1:]) - 1 > 0 else False
