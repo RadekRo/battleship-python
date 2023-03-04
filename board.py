@@ -69,7 +69,7 @@ def get_board_header(size):
             board_row += f" {row} "
         else:
             board_row += f"{row}"
-    board_row += get_new_line()
+    #board_row += get_new_line()
     return board_row
 
 def get_board_rows(board, size):
@@ -89,7 +89,10 @@ def get_new_line():
 def display_board(board, size):
     board_header = get_board_header(size)
     board_rows = get_board_rows(board, size)
-    board = board_header + board_rows
+    board = board_header + get_new_line() + board_rows
     print(board)
 
-#display_board(player_one, 10)
+def display_double_board(first_board, second_board, size):
+   board_headers = get_board_header(size) + get_board_header(size)
+   print(board_headers)
+   

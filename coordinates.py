@@ -9,7 +9,7 @@ for i in range(len(alphabet)):
 # function to get human player's ship coordinates
 def get_human_ship_coordinates(board, ship, board_size):
     
-    letters_range = list(string.ascii_uppercase[:board_size - 1])
+    letters_range = list(string.ascii_uppercase[:board_size])
     ship_directions = ["H", "V"]
     human_ship_coordinates = list()
     check_length_range = int(ship - 1)
@@ -25,10 +25,12 @@ def get_human_ship_coordinates(board, ship, board_size):
         if coordinates[0] not in alphabet_dict or not coordinates[1:].isdigit() or direction not in ship_directions:
             print("Invalid coordinates! Try again.")
             continue
-        if chr(ord(coordinates[0]) + 1) not in letters_range and direction == "V": 
+
+        if chr(ord(coordinates[0]) + check_length_range) not in letters_range and direction == "V": 
             print("Coordinates out of range! Try again.")
             continue
-        elif int(coordinates[1:]) + check_length_range > board_size:
+
+        if int(coordinates[1:]) + check_length_range > board_size and direction == "H":
             print("Coordinates out of range! Try again.")
             continue
 
@@ -43,12 +45,12 @@ def get_human_ship_coordinates(board, ship, board_size):
             if board[sail] == "X":
                 print("Invalid coordinates! There's already a ship there! Try again!")
                 human_ship_coordinates = list()
-                time.sleep(1.5)
+                time.sleep(1.6)
                 break
             elif board[sail] == ".":
                 print("Invalid coordinates! To close to other ship! Try again!")
                 human_ship_coordinates = list()
-                time.sleep(1.5)
+                time.sleep(1.6)
                 break
         return human_ship_coordinates
 
