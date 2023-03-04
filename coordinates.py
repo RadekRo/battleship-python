@@ -5,6 +5,7 @@ alphabet_dict = dict()
 for i in range(len(alphabet)):
     alphabet_dict[alphabet[i]] = i+1
 
+
 def sunk_ship(board, coordinate, board_size):
     
     ship_sunk = False
@@ -38,7 +39,6 @@ def check_if_ship_is_sunk(board, coordinate, board_size):
             checklist.append(sail) if board[sail] == "X" else None
     return False if len(checklist) > 0 else True
             
-
 def get_human_ship_coordinates(board, ship, board_size):
     
     letters_range = list(string.ascii_uppercase[:board_size])
@@ -82,8 +82,9 @@ def get_human_ship_coordinates(board, ship, board_size):
                 human_ship_coordinates = list()
                 time.sleep(1.6)
                 break
-
+                
     return human_ship_coordinates
+
 
 def get_ai_random_ship_coordinates(board):
     # TODO: implement
