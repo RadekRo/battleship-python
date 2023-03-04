@@ -76,8 +76,8 @@ def get_human_shot_coordinates(board, board_size):
             print("You've allready shot there! You loose your turn!")
             time.sleep(1.6)
             human_coordinates = "double_shot"
-            break
         human_coordinates = coordinates
+        
     return str(human_coordinates)
 
 # function to get random shot coordinates for AI player
