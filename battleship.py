@@ -1,8 +1,9 @@
-from board import get_empty_board, display_board, place_ship_on_board, leave_only_ships_on_board
-from coordinates import get_human_ship_coordinates
+from board import get_empty_board, display_board, place_ship_on_board, leave_only_ships_on_board, display_double_board
+from coordinates import get_human_ship_coordinates, get_human_shot_coordinates
 from menu import menu
 from common import clear
 from graphics import get_menu_header
+import time
 
 HUMAN_VS_HUMAN = 1
 BOARD_SIZE = 5
@@ -15,24 +16,27 @@ def get_ship_base(size):
     ships_base = three_sails + two_sails + one_sail
     return ships_base
 
-def pause_game(player):
-    input(f"Press [ENTER] for deploying phase of PLAYER {player}...")
+def pause_game(player, phase):
+    if phase == "deploy":
+        input(f"Press [ENTER] for deploying phase of PLAYER {player}...")
+    elif phase == "shoot":
+        input(f"Press [ENTER] for shooting phase of the game!")
+
 
 def positioning_phase(player):
     board = get_empty_board(BOARD_SIZE)
     ship_quantity = get_ship_base(BOARD_SIZE)
     clear()
     get_menu_header()
-    pause_game(player)
+    pause_game(player, "deploy")
     while len(ship_quantity) > 0:
+        current_ship = ship_quantity[0]
         clear()
         get_menu_header()
         print(f"SHIP POSITIONING. PLAYER {player}.\n")
         display_board(board, BOARD_SIZE)
-        current_ship = ship_quantity[0]
         print(f"Remaining ships: {len(ship_quantity)}.")
         print(f"Current ship: {current_ship} sail(s).")
-        #ship = input(f"Player {player} enter coordinates of your ship  ")
         coords = get_human_ship_coordinates(board, current_ship, BOARD_SIZE)
         if len(coords) > 0:
             place_ship_on_board(board, coords, BOARD_SIZE)
@@ -40,17 +44,50 @@ def positioning_phase(player):
     board = leave_only_ships_on_board(board)
     return board
 
+def shooting_phase(first_board, second_board, size):
+    
+    winner = ""
+    turn = 1
+    clear()
+    get_menu_header()
+    pause_game(..., "shoot")
+    
+    while winner == "":
+        clear()
+        get_menu_header()
+        display_double_board(second_board, first_board, size)
+        
+        if turn % 2 != 0:
+            current_board = second_board
+            print("PLAYER 1 TURN:\n")
+            shot = get_human_shot_coordinates(current_board, BOARD_SIZE)
+        else:
+            current_board = first_board
+            print("PLAYER 2 TURN:\n")
+            shot = get_human_shot_coordinates(current_board, BOARD_SIZE)
+        
+        turn += 1
+
+        if shot =="double_shot":
+            continue
+        else:
+            if current_board[shot] != "X":
+                print("You've missed!")
+                current_board[shot] = "M"
+                time.sleep(1.6)
+            else:
+                print("You've hit a ship!")
+                current_board[shot] = "H"
+                time.sleep(1.6)
 def main():
-    # gameplay function
     clear()
     game_mode = menu()
     if game_mode == "active":
         player_one = positioning_phase(1)
         player_two = positioning_phase(2)
-        print(f"""PLAYER ONE:
-{display_board(player_one, BOARD_SIZE)}""")
-        print(f"""PLAYER TWO:
-{display_board(player_two, BOARD_SIZE)}""")
-        #while game_mode == "active":
-        # pass   
+        player_one = get_empty_board(BOARD_SIZE)
+        player_two = get_empty_board(BOARD_SIZE)
+        clear()
+        shooting_phase(player_one, player_two, BOARD_SIZE)
+           
 main()
