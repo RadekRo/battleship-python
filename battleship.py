@@ -1,5 +1,5 @@
 from board import get_empty_board, display_board, place_ship_on_board, leave_only_ships_on_board, display_double_board, get_board_legend
-from coordinates import get_human_ship_coordinates, get_human_shot_coordinates, check_if_ship_is_sunk
+from coordinates import get_human_ship_coordinates, get_human_shot_coordinates, check_if_ship_is_sunk, sunk_ship
 from menu import menu
 from common import clear
 from graphics import get_menu_header
@@ -82,6 +82,7 @@ def shooting_phase(first_board, second_board, size):
                 sunk = check_if_ship_is_sunk(current_board, shot, BOARD_SIZE)
                 if sunk == True:
                     print("SHIP SUNK, big splash!") 
+                    sunk_ship(current_board, shot, BOARD_SIZE)
                 time.sleep(1.6)
 
 def main():

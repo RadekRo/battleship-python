@@ -5,8 +5,30 @@ alphabet_dict = dict()
 for i in range(len(alphabet)):
     alphabet_dict[alphabet[i]] = i+1
 
-def sunk_ship(board, coordination, board_size):
+def sunk_ship(board, coordinate, board_size):
     
+    ship_sunk = False
+    while ship_sunk == False:
+        board[coordinate] = "S"
+        letters_range = string.ascii_uppercase[:board_size]
+        checklist = []
+        hit = 0
+
+        checklist.append(coordinate[0] + str(int(coordinate[1:]) - 1)) if int(coordinate[1:]) - 1 > 0 else False
+        checklist.append(coordinate[0] + str(int(coordinate[1:]) + 1)) if int(coordinate[1:]) + 1 < board_size else False
+        checklist.append(chr(ord(coordinate[0]) - 1) + coordinate[1:]) if chr(ord(coordinate[0]) - 1) in letters_range else False
+        checklist.append(chr(ord(coordinate[0]) + 1) + coordinate[1:]) if chr(ord(coordinate[0]) + 1) in letters_range else False
+        for field in checklist:
+            if board[field] == "H":
+                coordinate = field
+                hit = 1
+        ship_sunk = True if hit == 0 else False
+
+
+                
+                    
+        
+
 
 
 def check_if_ship_is_sunk(board, coordinate, board_size):
