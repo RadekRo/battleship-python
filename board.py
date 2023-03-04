@@ -86,6 +86,21 @@ def get_board_rows(board, size):
 def get_new_line():
     return "\n"
 
+def get_double_board_rows(first_board, second_board, size):
+    board_rows = ""
+    for row in range(0, size):
+        current_row = string.ascii_uppercase[row]
+        board_rows += f" {current_row} "
+        for col in range(1, size + 1):
+            value = first_board[current_row + str(col)] if first_board[current_row + str(col)] != "X" else "~"
+            board_rows += f" {value} "
+        board_rows += f" {current_row} "
+        for col in range(1, size + 1):
+            value = second_board[current_row + str(col)] if second_board[current_row + str(col)] != "X" else "~"
+            board_rows += f" {value} "
+        board_rows += get_new_line()
+    return board_rows
+
 def display_board(board, size):
     board_header = get_board_header(size)
     board_rows = get_board_rows(board, size)
@@ -94,5 +109,7 @@ def display_board(board, size):
 
 def display_double_board(first_board, second_board, size):
    board_headers = get_board_header(size) + get_board_header(size)
-   print(board_headers)
+   board_rows = get_double_board_rows(first_board, second_board, size)
+   board = board_headers + get_new_line() + board_rows
+   print(board)
    

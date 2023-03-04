@@ -60,26 +60,35 @@ def get_ai_random_ship_coordinates(board):
     pass
 
 # function to get human player's shot coordinates
-def get_human_shot_coordinates(board):
-    while True:
-        coordinates = input("Enter the coordinates of your shot: ")
-        if coordinates[0].upper() not in alphabet_dict or not coordinates[1:].isdigit():
+def get_human_shot_coordinates(board, board_size):
+    letters_range = string.ascii_uppercase[:board_size]
+    human_coordinates = ""
+    while human_coordinates == "":
+        coordinates = input("Enter shot's coordinations (A1, B2..) \u2022 ").upper()
+        
+        if coordinates[0] not in alphabet_dict or not coordinates[1:].isdigit():
             print("Invalid coordinates! Try again.")
             continue
-        row = alphabet_dict[coordinates[0].upper()]
-        col = int(coordinates[1:])
-        if row < 1 or row > len(board) or col < 1 or col > len(board[0]):
+
+        if coordinates[0] not in letters_range or int(coordinates[1:]) > board_size: 
             print("Coordinates out of range! Try again.")
             continue
-        if board[row-1][col-1] != "~":
-            print("You've already shot there! Try again.")
-            continue
-        return coordinates
+    
+        if board[str(coordinates)] != "~":
+            print("You've allready shot there! You loose your turn!")
+            time.sleep(1.6)
+            human_coordinates = "double_shot"
+            break
+        human_coordinates = coordinates
+    return str(human_coordinates)
 
 # function to get random shot coordinates for AI player
 def get_ai_random_shot_coordinates(board):
-    while True:
-        row = random.randint(1, len(board))
-        col = random.randint(1, len(board[0]))
-        if board[row-1][col-1] == "~":
-            return alphabet[row-1] + str(col)
+    # TODO: implement
+    pass
+
+#     while True:
+#         row = random.randint(1, len(board))
+#         col = random.randint(1, len(board[0]))
+#         if board[row-1][col-1] == "~":
+#             return alphabet[row-1] + str(col)

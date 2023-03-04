@@ -1,8 +1,9 @@
 from board import get_empty_board, display_board, place_ship_on_board, leave_only_ships_on_board, display_double_board
-from coordinates import get_human_ship_coordinates
+from coordinates import get_human_ship_coordinates, get_human_shot_coordinates
 from menu import menu
 from common import clear
 from graphics import get_menu_header
+import time
 
 HUMAN_VS_HUMAN = 1
 BOARD_SIZE = 5
@@ -44,23 +45,46 @@ def positioning_phase(player):
     return board
 
 def shooting_phase(first_board, second_board, size):
+    
     winner = ""
+    turn = 1
+    clear()
+    get_menu_header()
+    pause_game(..., "shoot")
+    
     while winner == "":
         clear()
         get_menu_header()
-        pause_game(..., "shoot")
-        clear()
-        get_menu_header()
-        display_double_board(first_board, second_board, size)
-        input("Pause")
+        display_double_board(second_board, first_board, size)
         
+        if turn % 2 != 0:
+            current_board = second_board
+            print("PLAYER 1 TURN:\n")
+            shot = get_human_shot_coordinates(current_board, BOARD_SIZE)
+        else:
+            current_board = first_board
+            print("PLAYER 2 TURN:\n")
+            shot = get_human_shot_coordinates(current_board, BOARD_SIZE)
+        
+        turn += 1
 
+        if shot =="double_shot":
+            continue
+        else:
+            if current_board[shot] != "X":
+                print("You've missed!")
+                current_board[shot] = "M"
+                time.sleep(1.6)
+            else:
+                print("You've hit a ship!")
+                current_board[shot] = "H"
+                time.sleep(1.6)
 def main():
     clear()
     game_mode = menu()
     if game_mode == "active":
-        #player_one = positioning_phase(1)
-        #player_two = positioning_phase(2)
+        player_one = positioning_phase(1)
+        player_two = positioning_phase(2)
         player_one = get_empty_board(BOARD_SIZE)
         player_two = get_empty_board(BOARD_SIZE)
         clear()
