@@ -25,11 +25,9 @@ def get_human_ship_coordinates(board, ship, board_size):
         if coordinates[0] not in alphabet_dict or not coordinates[1:].isdigit() or direction not in ship_directions:
             print("Invalid coordinates! Try again.")
             continue
-
         if chr(ord(coordinates[0]) + check_length_range) not in letters_range and direction == "V": 
             print("Coordinates out of range! Try again.")
             continue
-
         if int(coordinates[1:]) + check_length_range > board_size and direction == "H":
             print("Coordinates out of range! Try again.")
             continue
@@ -74,7 +72,7 @@ def get_human_shot_coordinates(board, board_size):
             print("Coordinates out of range! Try again.")
             continue
     
-        if board[str(coordinates)] != "~":
+        if board[str(coordinates)] != "~" and board[str(coordinates)] != "X":
             print("You've allready shot there! You loose your turn!")
             time.sleep(1.6)
             human_coordinates = "double_shot"

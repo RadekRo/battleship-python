@@ -69,7 +69,6 @@ def get_board_header(size):
             board_row += f" {row} "
         else:
             board_row += f"{row}"
-    #board_row += get_new_line()
     return board_row
 
 def get_board_rows(board, size):

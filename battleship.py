@@ -73,6 +73,8 @@ def shooting_phase(first_board, second_board, size):
         else:
             if current_board[shot] != "X":
                 print("You've missed!")
+                print(current_board[shot])
+                print(current_board)
                 current_board[shot] = "M"
                 time.sleep(1.6)
             else:
@@ -85,8 +87,6 @@ def main():
     if game_mode == "active":
         player_one = positioning_phase(1)
         player_two = positioning_phase(2)
-        player_one = get_empty_board(BOARD_SIZE)
-        player_two = get_empty_board(BOARD_SIZE)
         clear()
         shooting_phase(player_one, player_two, BOARD_SIZE)
            
