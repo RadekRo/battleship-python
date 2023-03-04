@@ -5,6 +5,25 @@ alphabet_dict = dict()
 for i in range(len(alphabet)):
     alphabet_dict[alphabet[i]] = i+1
 
+def sunk_ship(board, coordination, board_size):
+    
+
+
+def check_if_ship_is_sunk(board, coordinate, board_size):
+    letters_range = string.ascii_uppercase[:board_size]
+    sail_check_left = coordinate[0] + str(int(coordinate[1:]) - 1) if int(coordinate[1:]) - 1 > 0 else False
+    sail_check_right = coordinate[0] + str(int(coordinate[1:]) + 1) if int(coordinate[1:]) + 1 < board_size else False
+    sail_check_up = chr(ord(coordinate[0]) - 1) + coordinate[1:] if chr(ord(coordinate[0]) - 1) in letters_range else False
+    sail_check_down = chr(ord(coordinate[0]) + 1) + coordinate[1:] if chr(ord(coordinate[0]) + 1) in letters_range else False
+    
+    sail_check_list = [sail_check_left, sail_check_right, sail_check_up, sail_check_down]
+    checklist = []
+    for sail in sail_check_list:
+        if sail != False:
+            checklist.append(sail) if board[sail] == "X" else None
+    return False if len(checklist) > 0 else True
+            
+
 def get_human_ship_coordinates(board, ship, board_size):
     
     letters_range = list(string.ascii_uppercase[:board_size])
@@ -48,7 +67,8 @@ def get_human_ship_coordinates(board, ship, board_size):
                 human_ship_coordinates = list()
                 time.sleep(1.6)
                 break
-        return human_ship_coordinates
+
+    return human_ship_coordinates
 
 def get_ai_random_ship_coordinates(board):
     # TODO: implement

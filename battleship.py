@@ -1,5 +1,5 @@
-from board import get_empty_board, display_board, place_ship_on_board, leave_only_ships_on_board, display_double_board
-from coordinates import get_human_ship_coordinates, get_human_shot_coordinates
+from board import get_empty_board, display_board, place_ship_on_board, leave_only_ships_on_board, display_double_board, get_board_legend
+from coordinates import get_human_ship_coordinates, get_human_shot_coordinates, check_if_ship_is_sunk
 from menu import menu
 from common import clear
 from graphics import get_menu_header
@@ -21,7 +21,6 @@ def pause_game(player, phase):
         input(f"Press [ENTER] for deploying phase of PLAYER {player}...")
     elif phase == "shoot":
         input(f"Press [ENTER] for shooting phase of the game!")
-
 
 def positioning_phase(player):
     board = get_empty_board(BOARD_SIZE)
@@ -59,11 +58,13 @@ def shooting_phase(first_board, second_board, size):
         
         if turn % 2 != 0:
             current_board = second_board
-            print("PLAYER 1 TURN:\n")
+            print("PLAYER 1 TURN:")
+            print(get_board_legend())
             shot = get_human_shot_coordinates(current_board, BOARD_SIZE)
         else:
             current_board = first_board
-            print("PLAYER 2 TURN:\n")
+            print("PLAYER 2 TURN:")
+            print(get_board_legend())
             shot = get_human_shot_coordinates(current_board, BOARD_SIZE)
         
         turn += 1
@@ -78,7 +79,11 @@ def shooting_phase(first_board, second_board, size):
             else:
                 print("You've hit a ship!")
                 current_board[shot] = "H"
+                sunk = check_if_ship_is_sunk(current_board, shot, BOARD_SIZE)
+                if sunk == True:
+                    print("SHIP SUNK, big splash!") 
                 time.sleep(1.6)
+
 def main():
     clear()
     game_mode = menu()
