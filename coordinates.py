@@ -1,12 +1,10 @@
 import random, string, time
 
-# create a dictionary with letters of the alphabet as keys and their corresponding indices as values
 alphabet = string.ascii_uppercase
 alphabet_dict = dict()
 for i in range(len(alphabet)):
     alphabet_dict[alphabet[i]] = i+1
 
-# function to get human player's ship coordinates
 def get_human_ship_coordinates(board, ship, board_size):
     
     letters_range = list(string.ascii_uppercase[:board_size])
@@ -52,12 +50,10 @@ def get_human_ship_coordinates(board, ship, board_size):
                 break
         return human_ship_coordinates
 
-# function to get random ship coordinates for AI player
 def get_ai_random_ship_coordinates(board):
     # TODO: implement
     pass
 
-# function to get human player's shot coordinates
 def get_human_shot_coordinates(board, board_size):
     letters_range = string.ascii_uppercase[:board_size]
     human_coordinates = ""
@@ -77,10 +73,9 @@ def get_human_shot_coordinates(board, board_size):
             time.sleep(1.6)
             human_coordinates = "double_shot"
         human_coordinates = coordinates
-        
+
     return str(human_coordinates)
 
-# function to get random shot coordinates for AI player
 def get_ai_random_shot_coordinates(board):
     # TODO: implement
     pass
