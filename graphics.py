@@ -13,3 +13,20 @@ def get_menu_header():
 BATTLESHIP. SADR Studio Developers 2023.
 ========================================
 """)
+  
+def get_exit_header():
+  print("""
+             |    |    |                 
+             )_)  )_)  )_)              
+------------)___))___))___)-------------
+  ^^^^^ ^^^^^^^^^^^^^^^^^^^^^
+    ^^^^      ^^^^     ^^^    ^^
+         ^^^^      ^^^
+========================================
+BATTLESHIP. SADR Studio Developers 2023.
+    THANK YOU FOR PLAYING OUR GAME!
+========================================""")
+
+def winning_player(player):
+  print("""
+  """)

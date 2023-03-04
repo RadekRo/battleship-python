@@ -2,7 +2,7 @@ from board import get_empty_board, display_board, place_ship_on_board, leave_onl
 from coordinates import get_human_ship_coordinates, get_human_shot_coordinates, check_if_ship_is_sunk, sunk_ship
 from menu import menu
 from common import clear
-from graphics import get_menu_header
+from graphics import get_menu_header, get_exit_header
 import time
 
 HUMAN_VS_HUMAN = 1
@@ -95,9 +95,12 @@ def main():
         player_two = positioning_phase(2)
         clear()
         winner = shooting_phase(player_one, player_two, BOARD_SIZE)
+        clear()
+        get_exit_header()
         if winner == 1:
             print("PLAYER ONE WINS! GAME OVER!")
         elif winner == 2:
             print("PLAYER TWO WINS! GAME OVER!") 
+
            
 main()
