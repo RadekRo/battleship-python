@@ -38,7 +38,6 @@ def check_if_ship_is_sunk(board, coordinate, board_size):
             checklist.append(sail) if board[sail] == "X" else None
     return False if len(checklist) > 0 else True
             
-
 def get_human_ship_coordinates(board, ship, board_size):
     
     letters_range = list(string.ascii_uppercase[:board_size])
