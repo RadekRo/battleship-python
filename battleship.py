@@ -10,10 +10,13 @@ BOARD_SIZE = 5
 
 def get_ship_base(size):
     ships_base = list()
-    three_sails = [3] * int(size * 0.2)
-    two_sails = [2] * int((size - len(three_sails)) * 0.4)
-    one_sail = [1] * (size - len(two_sails) - len(three_sails))
-    ships_base = three_sails + two_sails + one_sail
+    # three_sails = [3] * int(size * 0.2)
+    #two_sails = [2] * int((size - len(three_sails)) * 0.4)
+    #one_sail = [1] * (size - len(two_sails) - len(three_sails))
+    #ships_base = three_sails + two_sails + one_sail
+    two_sails = [2] * int(size * 0.4)
+    one_sail = [1] * (size - len(two_sails))
+    ships_base = two_sails + one_sail
     return ships_base
 
 def pause_game(player, phase):
@@ -55,7 +58,6 @@ def shooting_phase(first_board, second_board, size):
         clear()
         get_menu_header()
         display_double_board(second_board, first_board, size)
-        
         if turn % 2 != 0:
             current_board = second_board
             print("PLAYER 1 TURN:")
@@ -98,9 +100,11 @@ def main():
         clear()
         get_exit_header()
         if winner == 1:
-            print("PLAYER ONE WINS! GAME OVER!")
+            print("      PLAYER ONE WINS! GAME OVER!")
+            input("")
         elif winner == 2:
-            print("PLAYER TWO WINS! GAME OVER!") 
+            print("      PLAYER TWO WINS! GAME OVER!") 
+            input("")
 
            
 main()

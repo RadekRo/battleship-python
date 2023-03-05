@@ -26,7 +26,3 @@ def get_exit_header():
 BATTLESHIP. SADR Studio Developers 2023.
     THANK YOU FOR PLAYING OUR GAME!
 ========================================""")
-
-def winning_player(player):
-  print("""
-  """)
