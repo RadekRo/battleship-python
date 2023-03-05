@@ -110,8 +110,9 @@ def display_board(board, size):
     print(board)
 
 def display_double_board(first_board, second_board, size):
+   two_players_header = (" PLAYER 1                  PLAYER 2\n")
    board_headers = get_board_header(size) + get_board_header(size)
    board_rows = get_double_board_rows(first_board, second_board, size)
-   board = board_headers + get_new_line() + board_rows
+   board = two_players_header + board_headers + get_new_line() + board_rows
    print(board)
    

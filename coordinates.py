@@ -25,17 +25,18 @@ def sunk_ship(board, coordinate, board_size):
         ship_sunk = True if hit == 0 else False
 
 def check_if_ship_is_sunk(board, coordinate, board_size):
+
     letters_range = string.ascii_uppercase[:board_size]
     sail_check_left = coordinate[0] + str(int(coordinate[1:]) - 1) if int(coordinate[1:]) - 1 > 0 else False
-    sail_check_right = coordinate[0] + str(int(coordinate[1:]) + 1) if int(coordinate[1:]) + 1 < board_size else False
+    sail_check_right = coordinate[0] + str(int(coordinate[1:]) + 1) if int(coordinate[1:]) + 1 <= board_size else False
     sail_check_up = chr(ord(coordinate[0]) - 1) + coordinate[1:] if chr(ord(coordinate[0]) - 1) in letters_range else False
     sail_check_down = chr(ord(coordinate[0]) + 1) + coordinate[1:] if chr(ord(coordinate[0]) + 1) in letters_range else False
     
     sail_check_list = [sail_check_left, sail_check_right, sail_check_up, sail_check_down]
-    checklist = []
+    checklist = list()
     for sail in sail_check_list:
         if sail != False:
-            checklist.append(sail) if board[sail] == "X" else None
+                checklist.append(sail) if board[sail] == "X" else None
     return False if len(checklist) > 0 else True
             
 def get_human_ship_coordinates(board, ship, board_size):
